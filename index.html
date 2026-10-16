@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Carlos Mendoza | Odontología Especializada</title>
+  
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Fuente Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0284c7;        /* Azul clínico */
+      --primary-dark: #0369a1;   /* Azul oscuro */
+      --secondary: #0ea5e9;      /* Azul claro accent */
+      --bg: #f1f5f9;             /* Fondo exterior */
+      --card-bg: #ffffff;        /* Fondo tarjeta */
+      --text: #0f172a;           /* Texto principal */
+      --text-muted: #64748b;     /* Texto secundario */
+      --whatsapp: #25d366;       /* Verde WhatsApp */
+      --emergency: #ef4444;      /* Rojo Emergencia */
+      --success: #10b981;        /* Verde Abierto */
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 15px 0;
+    }
+
+    /* Marco de tarjeta tipo aplicación móvil */
+    .card-container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border-radius: 28px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    /* Banner con gradiente */
+    .header-banner {
+      background: linear-gradient(135deg, #0284c7 0%, #0284c7 50%, #38bdf8 100%);
+      height: 120px;
+      position: relative;
+    }
+
+    .badge-status {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Perfil */
+    .profile-area {
+      text-align: center;
+      margin-top: -55px;
+      padding: 0 20px;
+    }
+
+    .profile-img-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid var(--card-bg);
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .verified-badge {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      border: 2px solid white;
+    }
+
+    .profile-info {
+      margin-top: 10px;
+    }
+
+    .profile-info h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .profile-info .title {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .profile-info .cedula {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Acciones Principales */
+    .actions {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      background-color: var(--whatsapp);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1eb857;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background-color: #f8fafc;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-emergency {
+      background-color: #fef2f2;
+      color: var(--emergency);
+      border: 1px solid #fca5a5;
+      font-size: 0.85rem;
+      padding: 10px 18px;
+    }
+
+    /* Secciones Interiores */
+    .section {
+      padding: 0 20px 20px 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 800;
+    }
+
+    /* Servicios */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .service-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 12px 10px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .service-card i {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .service-card h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Galería Antes y Después */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      color: white;
+      font-size: 0.68rem;
+      text-align: center;
+      padding: 4px 0;
+      font-weight: 600;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Horarios */
+    .schedule-list {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 15px;
+      font-size: 0.82rem;
+    }
+
+    .schedule-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+
+    .schedule-day {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .schedule-time {
+      color: var(--text-muted);
+    }
+
+    /* Acordeón Preguntas Frecuentes */
+    .faq-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 12px 15px;
+      background: none;
+      border: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      padding: 0 15px 12px 15px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: none;
+    }
+
+    /* Reseñas / Social Proof */
+    .reviews-container {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .review-stars {
+      color: #f59e0b;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    .review-text {
+      font-size: 0.78rem;
+      color: #0369a1;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .review-author {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0c4a6e;
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 18px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      font-size: 0.7rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Banner superior con indicador de estado -->
+    <div class="header-banner">
+      <div class="badge-status">
+        <span class="status-dot"></span> Abierto Hoy
+      </div>
+    </div>
+
+    <!-- Perfil del Odontólogo -->
+    <div class="profile-area">
+      <div class="profile-img-container">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=300&auto=format&fit=crop&q=80" alt="Dr. Carlos Mendoza" class="profile-img">
+        <div class="verified-badge"><i class="fa-solid fa-check"></i></div>
+      </div>
+      
+      <div class="profile-info">
+        <h1>Dr. Carlos Mendoza</h1>
+        <p class="title">Cirujano Dentista • Estética Dental</p>
+        <p class="cedula">Cédula Prof. 8492018 | UNAM</p>
+      </div>
+    </div>
+
+    <!-- Acciones Directas -->
+    <div class="actions">
+      <!-- Agendar cita -->
+      <a href="https://wa.me/525500000000?text=Hola%20Dr.%20Carlos,%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank" class="btn btn-whatsapp">
+        <i class="fa-brands fa-whatsapp fa-lg"></i> Agendar Cita en WhatsApp
+      </a>
+
+      <!-- Guardar contacto vCard -->
+      <button onclick="downloadVCard()" class="btn btn-primary">
+        <i class="fa-solid fa-user-plus"></i> Guardar Contacto en Agenda
+      </button>
+
+      <!-- Cómo llegar -->
+      <a href="https://maps.google.com" target="_blank" class="btn btn-outline">
+        <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> Ubicación (Google Maps)
+      </a>
+
+      <!-- Emergencia -->
+      <a href="tel:+525500000000" class="btn btn-emergency">
+        <i class="fa-solid fa-phone-volume"></i> Urgencias Dentales (Llamar)
+      </a>
+    </div>
+
+    <!-- Módulo de Servicios -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Servicios Principales</span>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fa-solid fa-tooth"></i>
+          <h4>Limpieza Ultrasonido</h4>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-sparkles"></i>
+          <h4>Blanqueamiento</h4>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-gem"></i>
+          <h4>Resinas Estéticas</h4>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-align-center"></i>
+          <h4>Ortodoncia</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Casos de Éxito / Galería -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Casos de Éxito</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=300&auto=format&fit=crop&q=80" alt="Blanqueamiento">
+          <div class="gallery-label">Blanqueamiento LÁSER</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=300&auto=format&fit=crop&q=80" alt="Diseño de sonrisa">
+          <div class="gallery-label">Diseño de Sonrisa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horario de Atención -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Horario de Consultorio</span>
+      </div>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <span class="schedule-day">Lunes a Viernes</span>
+          <span class="schedule-time">10:00 AM - 7:00 PM</span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-day">Sábados</span>
+          <span class="schedule-time">10:00 AM - 3:00 PM</span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-day">Domingos</span>
+          <span class="schedule-time" style="color: #ef4444; font-weight: 600;">Cerrado (Solo Urgencias)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonio / Reseña -->
+    <div class="section">
+      <div class="reviews-container">
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-text">"Excelente atención del Dr. Carlos. Me dio mucha confianza en mi tratamiento de limpieza y resinas, super recomendado."</p>
+        <p class="review-author">— María Fernanda G. (Paciente verificado)</p>
+      </div>
+    </div>
+
+    <!-- Preguntas Frecuentes -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Preguntas Frecuentes</span>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Aceptan tarjetas de crédito/débito?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          Sí, aceptamos tarjetas de débito, crédito (Visa/Mastercard) y pagos a meses sin intereses participantes.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿La consulta de valoración tiene costo?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          Al agendar por primera vez mediante esta tarjeta digital, tu diagnóstico inicial y revisión con cámara intraoral son totalmente gratuitos.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer">
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="copyright">Consultorio Odontológico • Texcoco / Chiconcuac</p>
+    </div>
+  </div>
+
+  <script>
+    /* Función para descargar vCard */
+    function downloadVCard() {
+      const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:Dr. Carlos Mendoza - Dentista
+ORG:Consultorio Odontológico
+TEL;TYPE=CELL:+525500000000
+TITLE:Cirujano Dentista
+NOTE:Guardado desde Tarjeta Digital
+END:VCARD`;
+
+      const blob = new Blob([vcardData], { type: 'text/vcard' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Dr_Carlos_Mendoza_Dentista.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    /* Función Acordeón Preguntas Frecuentes */
+    function toggleFaq(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+        icon.style.transform = "rotate(0deg)";
+      } else {
+        answer.style.display = "block";
+        icon.style.transform = "rotate(180deg)";
+      }
+    }
+  </script>
+</body>
+</html>
